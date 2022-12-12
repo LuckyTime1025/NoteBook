@@ -492,7 +492,7 @@ SELECT @@autocommit;
 
 --方式 1
 -- 设置事务为手动提交
-SET @@autocommit = 0；
+SET @@autocommit = 0;
 
 -- 方式 2
 -- 开启事务
