@@ -42,7 +42,7 @@ CREATE DATABASE IF NOT EXISTS 数据库名;
 CREATE TABLE 表名 (
   字段 字段类型 [约束条件] [COMMENT '注释'],
   字段 字段类型 [约束条件] [COMMENT '注释']
-)[COMMENT='注释']
+)[COMMENT='注释'];
 ```
 #### 复制
 ```sql
@@ -310,53 +310,99 @@ SELECT AVG() FROM 表名;
 SELECT SUM() FROM 表名;
 ```
 ### 字符串函数
+####  字符串拼接
 ```sql
-# 字符串拼接
 CONCAT(S1,S2,…SN)
-
-# 将字符串转换为小写
+```
+####  将字符串转换为小写
+```sql
 LOWER(STR)
-
-# 将字符串转换为大写
+```
+####  将字符串转换为大写
+```sql
 UPPER(STR)
-
-# 左填充（用字符串pad对str的左边进行填充，达到n个字符串长度）
+```
+####  左填充（用字符串pad对str的左边进行填充，达到n个字符串长度）
+```sql
 LPAD(STR,N,PAD)
-
-# 右填充（用字符串pad对str的右边进行填充，达到n个字符串长度）
+```
+####  右填充（用字符串pad对str的右边进行填充，达到n个字符串长度）
+```sql
 RPAD(STR,N,PAD)
-
-# 去掉字符串头部和尾部的空格
+```
+####  去掉字符串头部和尾部的空格
+```sql
 TRIM(STR)
-
-# 返回从字符串start位置起的len个长度的字符串
+```
+####  返回从字符串start位置起的len个长度的字符串
+```sql
 SUBSTRING(STR,START,LEN)
 ```
-
 ### 日期函数
+#### 返回当前日期
 ```sql
-# 返回当前日期
 CURDATE()
-
-# 返回当前时间
+```
+#### 返回当前时间
+```sql
 CURTIME()
-
-# 返回当前日期和时间
+```
+#### 返回当前日期和时间
+```sql
 NOW()
-
-# 获取指定date的年份
+```
+#### 获取指定date的年份
+```sql
 YEAR(date)
-
-//获取指定date的月份
+```
+#### 获取指定date的月份
+```sql
 MONTH(date)
-
-//获取指定date的日期
+```
+#### 获取指定date的日期
+```sql
 DAY(date)
-
-#返回一个日期/时间值加上一个时间间隔expr后的时间值
+```
+#### 返回一个日期/时间值加上一个时间间隔expr后的时间值
+```sql
 DATE_ADD(date,INTERVAL expr type)
-
-#返回起始时间date1和结束时间date2之间的天数
+```
+#### 返回起始时间date1和结束时间date2之间的天数
+```sql
 DATEDIFF(date1,date2)
 ```
 ### 流程函数
+#### 如果value为true则返回true，否则返回false
+```sql
+IF(value,true,false)
+```
+#### 如果value1不为空，则返回value1，否则返回value2
+```sql
+IFNULL(value1,value2)
+```
+#### 如果val1为true，则返回res1，…否则返回default默认值
+```sql
+CASE WHEN [val1] THEN [res1] … ELSE [default] END
+```
+#### 如果expr的值等于val1，返回res1，…否则返回default默认值
+```sql
+CASE [expr] WHEN [val1] THEN [res1] …ELSE[default] END
+```
+## MySQL—约束
+### 约束
+|约束|描述|关键字|
+|-|-|-|
+|非空约束|限制该字段的数据不能为null|NOT NULL|
+|唯一约束|保证该字段的所有数据都是唯一、不重复的|UNIQUE|
+|主键约束|主键是一行数据的唯一标识，要求非空且唯一|PRIMARY KEY|
+|默认约束|保存数据时，如果未指定该字段的值，则采用默认值|DEFAULT|
+|检查约束|保证字段值满足一个条件|CHECK|
+|外键约束|用来让两张表的数据之间建立连接，保证数据的一致性和完整性|FOREIGN KEY|
+### 外键约束
+|行为|说明|
+|-|-|
+|NO ACTION|当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新。|
+|RESTRICT|当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新。|
+|CASCADE|当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则也删除/更新外键在子表中的记录。|
+|SET NULL|当在父表中删除对应记录时，首先检查该记录是否有对应外键，如果有则设置子表格中该外键值为NULL（这就要求该外键允许取NULL）。|
+|SET DEFAULT|父表有变更时，子表将外键列设置成一个默认的值（Innodb不支持）。|
