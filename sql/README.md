@@ -334,4 +334,29 @@ SUBSTRING(STR,START,LEN)
 ```
 
 ### 日期函数
+```sql
+# 返回当前日期
+CURDATE()
+
+# 返回当前时间
+CURTIME()
+
+# 返回当前日期和时间
+NOW()
+
+# 获取指定date的年份
+YEAR(date)
+
+//获取指定date的月份
+MONTH(date)
+
+//获取指定date的日期
+DAY(date)
+
+#返回一个日期/时间值加上一个时间间隔expr后的时间值
+DATE_ADD(date,INTERVAL expr type)
+
+#返回起始时间date1和结束时间date2之间的天数
+DATEDIFF(date1,date2)
+```
 ### 流程函数
