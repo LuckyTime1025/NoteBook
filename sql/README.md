@@ -39,7 +39,14 @@ CREATE DATABASE IF NOT EXISTS 数据库名;
 ```
 #### 创建数据表
 ```sql
-CREATE TABLE 表名(字段 字段类型 COMMENT '注释') COMMENT='注释';
+CREATE TABLE 表名 (
+  字段 字段类型 [约束条件] [COMMENT '注释'],
+  字段 字段类型 [约束条件] [COMMENT '注释']
+)[COMMENT='注释']
+```
+#### 复制
+```sql
+CREATE TABLE 表名 LIKE 被复制的表名;
 ```
 #### 选择数据库
 ```sql
@@ -174,7 +181,7 @@ SELECT 字段列表 FROM 表名 ORDER BY 字段1 DESC;
 SELECT 字段列表 FROM 表名 LIMIT 起始索引,查询记录数;
 ```
 ## MySQL-DCL
-<table border="1">
+<table>
     <caption>密码策略</caption>
     <tr>
         <td>固定密码的总长度</td>
@@ -200,7 +207,7 @@ SELECT 字段列表 FROM 表名 LIMIT 起始索引,查询记录数;
 
 > 0/LOW：只验证长度<br/>1/MEDIUM：验证长度、数字、大小写、特殊字符<br/>2/STRONG：验证长度、数字、大小写、特殊字符、字典文件<br/>
 
-<table border="1">
+<table>
     <caption>权限</caption>
     <tr>
         <td>ALL,ALL PRIVILEGES</td>
