@@ -1,25 +1,26 @@
-# 设置用户信息
+# Git 学习笔记
+## 设置用户信息
 ```shell
 git config --global user.name "Lucky"
 git config --global user.email "luckytime1025@gmail.com"
 ```
-# 初始化仓库
+## 初始化仓库
 ```shell
 git init
 ```
-# 添加文件到暂存区
+## 添加文件到暂存区
 ```shell
 git add
 ```
-# 提交到仓库
+## 提交到仓库
 ```shell
 git commit -m "commit message"
 ```
-# 查看文件状态
+## 查看文件状态
 ```shell
 git status
 ```
-# 查看提交日志
+## 查看提交日志
 ```
 git log [option]
 ```
@@ -31,11 +32,11 @@ git log [option]
 ```shell
 git log --pretty=oneline --abbrev-commit --graph
 ```
-# 版本回退
+## 版本回退
 ```shell
 git reset --hard <commitld>
 ```
-# 查看已经删除的记录
+## 查看已经删除的记录
 ```shell
 git reflog
 ```
@@ -43,40 +44,40 @@ git reflog
 
 ---
 
-# 分支
-## 查看分支
+## 分支
+### 查看分支
 ```shell
 git branch
 ```
-## 查看远程仓库关联状态
+### 查看远程仓库关联状态
 ```shell
 git branch -vv
 ```
-## 创建新分支
+### 创建新分支
 ```shell
 git branch <branch name>
 ```
-## 切换分支
+### 切换分支
 ```shell
 git checkout <branch name>
 ```
-## 创建并切换分支
+### 创建并切换分支
 ```shell
 git checkout -b <branch name>
 ```
-## 合并分支
+### 合并分支
 ```shell
 git merge <branch name>
 ```
 > 合并分支需要先切换到目标分支 
-## 删除分支
+### 删除分支
 ```shell
 git branch -d <branch name>
 git branch -D <branch name>
 ```
 > ```-d``` 需要做各种检查，如果分支暂存区有未提交到仓库中，无法删除<br>
 > ```-D``` 强制删除
-## 在开发中，一般有如下分支使用原则与流程
+### 在开发中，一般有如下分支使用原则与流程
 - master 生产分支
     - 线上分支，主分支，中小规模项目作为线上运行的应用对应的分支
 - develop 开发分支
@@ -86,43 +87,43 @@ git branch -D <branch name>
 - hotfix/xxx 分支
     - 从master派生的分支，一般作为线上bug修复使用，修复完成后需要合并到master、test、develop分支
 - 还有其他一些分支，例如test分支（用于代码测试）、pre（预上线分支）分支等等。
-# 远程仓库
-## 生成```rsa```密匙
+## 远程仓库
+### 生成```rsa```密匙
 ```shell
 ssh-keygen -t rsa
 ```
 > 需要在远程仓库中配置 ~/.ssh/id_rsa.pub 中的公匙
-## 测试是否配置成功
+### 测试是否配置成功
 ```shell
 ssh -T git@gitee.com
 ```
-## 添加远程仓库
+### 添加远程仓库
 ```shell
 git remote add <remote name> <remote url>
 ```
 > 远程仓库名称一般配置为```origin```<br>
-## 查看远程仓库
+### 查看远程仓库
 ```shell
 git remote
 ```
-## 推送到远程仓库
+### 推送到远程仓库
 ```shell
 git push [-f] [--set-upstream] [remote name [branch name]:[remote branch name]] 
 ```
 - ```-f``` 强制覆盖
 - ```--set-upstream``` 推送到远端的同时并建立起和远端分支的关联关系
 > 如果当前分支已经和远端分支关联，则可以省略分支和远端名。
-## 从远程仓库克隆
+### 从远程仓库克隆
 ```shell
 git clone <remote url>
 ```
-## 从远程仓库抓取
+### 从远程仓库抓取
 ```shell
 git fetch [remote name] [branch name]
 ```
 > 如果不指定远程名称和分支名称，则抓取所有分支
 
-## 从远程仓库拉取
+### 从远程仓库拉取
 ```shell
 git pull [remote name] [branch name]
 ```
