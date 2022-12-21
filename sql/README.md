@@ -346,6 +346,12 @@ ALTER　USER '用户名'@'主机名' IDENTIFIED WITH mysql_native_password BY '�
 DROP USER '用户名'@'主机名';
 ```
 
+### 引导配置
+
+```shell
+mysql_secure_installation
+```
+
 ### 查看权限
 
 ```sql
@@ -373,13 +379,13 @@ SHOW VARIABLES LIKE 'validate_password%';
 ### 设置密码策略
 
 ```sql
-set global validate_password_policy=0;
+set global validate_password.policy=0;
 ```
 
 ### 设置密码长度
 
 ```sql
-set global validate_password_length=6;
+set global validate_password.length=6;
 ```
 
 ### 刷新权限
