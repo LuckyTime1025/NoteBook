@@ -155,6 +155,18 @@ git remote add <remote name> <remote url>
 git remote
 ```
 
+### 删除远程仓库
+
+```shell
+git remote rm <remote name>
+```
+
+### 修改远程仓库地址
+
+```shell
+git remote set-url <remote name> <remote url>
+```
+
 ### 推送到远程仓库
 
 ```shell
