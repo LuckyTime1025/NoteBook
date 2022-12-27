@@ -7,6 +7,24 @@ git config --global user.name "Lucky"
 git config --global user.email "luckytime1025@gmail.com"
 ```
 
+## 代理配置
+
+```shell
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy https://127.0.0.1:7890
+git config --global http.proxy 'socks5://127.0.0.1:7890'
+git config --global https.proxy 'socks5://127.0.0.1:7890'
+
+git config --global https.proxy https://username:password@proxy.baidu.com:7890
+```
+
+## 取消代理
+
+```shell
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
 ## 初始化仓库
 
 ```shell
