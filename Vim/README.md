@@ -192,7 +192,7 @@ EX模式：类似于命令行模式，可以一次运行多个命令
 :set autowrite
 ```
 
-- 标签页与折叠栏
+#### 标签页与折叠栏
 
 - 标签页的新建：```tabedit file/tab split```
 - 标签页的切换: ```tabn/tabp```
