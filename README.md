@@ -5,10 +5,9 @@
 - [Linux笔记](./Linux/README.md)  
 - [Vim笔记](./Vim/README.md)  
 
-- [无序链表](./Data%20Structures/UnorderedList.md)
-- [有序链表](./Data%20Structures/OrderedList.md)
-- [栈]
-- [队列]
+- [链表](./Data%20Structures/LinkedList.md)
+- [栈](./Data%20Structures/Stack.md)
+- [队列](./Data%20Structures/Deque.md)
 - [双端队列]
 - [树]
 - [图]

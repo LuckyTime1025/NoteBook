@@ -1,6 +1,8 @@
-# 无序链表
+# 链表
 
-## Node 类  
+## 无序链表
+
+### Node 类  
 
 > 节点 Node 类是构建链表的基本数据结构。每一个节点对象都必须持有至少两份信息。首先，节点必须包含列表元素，我们称之为节点的数据变量。其次，节点必须保存指向下一个节点的引用。
 
@@ -30,12 +32,11 @@ class Node(object):
         self.__next = newNext
 ```
 
-## UnorderedList 类
+### UnorderedList 类
 
 > 无序列表（unordered list）是基于节点集合来构建的，每一个节点都通过显式的引用指向下一个节点。只要知道第一个节点的位置（第一个节点包含第一个元素）其后的每一个元素都能通过下一个引用找到。因此 UnorderedList 类必须包含指向第一个节点的引用。
 
 ```Python
-class UnorderedList(object):
 class UnorderedList(object):
     __slots__ = ('__head', '__length')
 
@@ -199,7 +200,7 @@ class UnorderedList(object):
             return None
 ```
 
-## 完整代码
+### 完整代码
 
 ```Python
 class Node(object):
@@ -346,4 +347,73 @@ class UnorderedList(object):
         else:
             return None
 
+```
+
+## 有序链表
+
+> 在有序列表中，元素的相对位置取决与它们的基本特征。
+
+### OrderedList 类
+
+```Python
+class OrderedList(object):
+    __slots__ = ('__head', '__length')
+
+    def __init__(self):
+        self.__head = None
+        self.__length = 0
+
+    def __contains__(self, item):
+        return self.search(item)
+
+    def __str__(self):
+        return f'{[i for i in self.__iter__()]}'
+
+    def __iter__(self):
+        current = self.__head
+        while current:
+            yield current.getData()
+            current = current.getNext()
+```
+
+因为 isEmpty 和 length 仅与列表中的节点数有关，而与实际的元素值无关，所以这两个方法在有序列表中的实现与在无序列表中一样。同理，由于仍然需要找到目标元素并且通过改链移除节点，因此 remove 方法的实现也一样。
+
+- ```add(item)``` 必须要确定新元素的位置
+
+```Python
+    def add(self, item):
+        current = self.__head
+        previous = None
+        temp = Node(item)
+        if self.__head is None:
+            temp.setNext(self.__head)
+            self.__head = temp
+            self.__length += 1
+        else:
+            while current:
+                if current.getData() > item:
+                    temp.setNext(current)
+                    previous.setNext(temp)
+                    self.__length += 1
+                    return
+                previous = current
+                current = current.getNext()
+            else:
+                previous.setNext(temp)
+                self.__length += 1
+```
+
+- ```search(item)``` 可以利用元素有序排列这一特性尽早终止搜索。
+
+```Python
+    def search(self, item):
+        current = self.__head
+        while current:
+            if current.getData() > item:
+                return False
+            else:
+                if current.getData() == item:
+                    return True
+            current = current.getNext()
+        return False
 ```
