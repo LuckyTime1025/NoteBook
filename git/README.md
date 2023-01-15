@@ -148,7 +148,7 @@ git branch -D <branch name>
 ### 生成```rsa```密匙
 
 ```shell
-ssh-keygen -t rsa
+ssh-keygen -t rsa -b 4096 -C "luckytime1025@gmail.com"
 ```
 
 > 需要在远程仓库中配置 ~/.ssh/id_rsa.pub 中的公匙
