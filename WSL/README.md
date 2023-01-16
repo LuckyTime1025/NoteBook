@@ -82,3 +82,27 @@ pacman -S --needed --noconfirm vim git base-devel
 # --needed 不重复安装
 # --noconfirm 不询问
 ```
+
+## 一些问题
+
+### 安装软件报错 
+
+> ldconfig: /usr/lib/wsl/lib/libcuda.so.1 不是符号链接
+
+```bash
+cd /usr/lib/wsl
+sudo mkdir lib2
+sudo ln -s lib/* lib2
+sudo ldconfig
+```
+
+编辑 ```/etc/ld.so.conf.d/ld.wsl.conf``` 将 ```/usr/lib/wsl/lib``` 改为 ```/usr/lib/wsl/lib2```
+
+> 更改链接路径后,更新驱动之后需要重新链接,否则 lib2 中和 lib 中不一致,从而导致wsl中不可使用windows下的驱动
+
+重启之后 wsl 会自动还原,不还原需要修改 /etc/wsl.conf
+
+```conf
+[automount]
+ldconfig = fasle
+```
