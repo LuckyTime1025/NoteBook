@@ -85,7 +85,7 @@ pacman -S --needed --noconfirm vim git base-devel
 
 ## 一些问题
 
-### 安装软件报错 
+### 安装软件报错
 
 > ldconfig: /usr/lib/wsl/lib/libcuda.so.1 不是符号链接
 
@@ -106,3 +106,7 @@ sudo ldconfig
 [automount]
 ldconfig = fasle
 ```
+
+Actually this is not relate to Arch, nor ArchWSL. It's caused by libcuda.so in your C:\Windows\System32\lxss\lib\ folder not a symbolic link, which is installed by nvidia driver. One solution to fuck the warning is delete libcuda.so and libcuda.so.1 and use
+make symbolic link to libcuda.so.1.1. Command line: mklink <target file> <source file>. Note the command not work in powershell, you shall use cmd.exe.
+:)
