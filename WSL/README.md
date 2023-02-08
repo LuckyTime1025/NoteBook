@@ -46,6 +46,13 @@ nameserver 223.5.5.2
 nameserver 223.6.6.6
 ```
 
+> 在 ```/etc/wsl.config``` 中添加一下代码,否则重启 wsl DNS 配置会失效
+
+```conf
+[network]
+generateResolvConf = false
+```
+
 ## Arch 国内源
 
 /etc/pacman.d/mirrorlist
