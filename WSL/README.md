@@ -22,6 +22,7 @@ C:\Users\THINK\AppData\Local\Packages\
 [wsl2]
 networkingMode=bridged # 桥接模式
 vmSwitch=WSLBridge # 你想使用的网卡
+dhcp=false # 禁止动态分配
 ipv6=true # 启用 IPv6
 ```
 
@@ -32,9 +33,17 @@ ipv6=true # 启用 IPv6
 Name=eth0 # 网卡名称
 
 [Network]
-Address=192.168.100.100 # IP 地址
-Gateway=192.168.100.2 # 网关地址
-DNS=8.8.8.8 8.8.4.4 223.5.5.2 223.6.6.6 # DNS
+Address=192.168.1.100 # IP 地址
+Gateway=192.168.1.1 # 网关地址
+```
+
+4. 在 ```/etc/resolv.conf``` 中配置 DNS
+
+```conf
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 223.5.5.2
+nameserver 223.6.6.6
 ```
 
 ## Arch 国内源
@@ -65,10 +74,10 @@ pacman -S archlinuxcn-keyring
 
 1. 本地化配置
 
-编辑 /etc/locale.gen 去掉 ```en_US.UTF-8``` 及 ```zh_CN.UTF-8``` 前的 ```#```
-2. 执行 ```locale-gen```
-3. ```echo 'LANG=en_US.UTF-8' > /etc/locale.conf```
-4. 在 ~/.bashrf 开头设置
+编辑 /etc/locale.gen 去掉 ```en_US.UTF-8``` 及 ```zh_CN.UTF-8``` 前的 ```#```  
+2. 执行 ```locale-gen```  
+3. ```echo 'LANG=en_US.UTF-8' > /etc/locale.conf```  
+4. 在 ~/.bashrc 开头设置  
 
 ```shell
 export LANG=zh_CN.UTF-8
@@ -89,6 +98,17 @@ pacman -S --needed --noconfirm vim git base-devel
 
 > ldconfig: /usr/lib/wsl/lib/libcuda.so.1 不是符号链接
 
+1. 在 ```C:\Windows\System32\lxss\lib\``` 删除 ```libcuda.so``` 和 ```libcuda.so.1```  
+2. 使用 ```cmd.exe``` 创建 libcuda.so.1.1 的链接  
+
+```shell
+mklink <target file> <source file>
+mklink libcuda.so libcuda.so.1.1
+mklink libcuda.so.1 libcuda.so.1.1
+```
+
+#### 或者使用下面的方法
+
 ```bash
 cd /usr/lib/wsl
 sudo mkdir lib2
@@ -106,7 +126,3 @@ sudo ldconfig
 [automount]
 ldconfig = fasle
 ```
-
-Actually this is not relate to Arch, nor ArchWSL. It's caused by libcuda.so in your C:\Windows\System32\lxss\lib\ folder not a symbolic link, which is installed by nvidia driver. One solution to fuck the warning is delete libcuda.so and libcuda.so.1 and use
-make symbolic link to libcuda.so.1.1. Command line: mklink <target file> <source file>. Note the command not work in powershell, you shall use cmd.exe.
-:)
