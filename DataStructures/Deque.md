@@ -17,7 +17,7 @@ def addFront(self, item) -> None:
 ```
 
 - ```addRear(item)``` 将一个元素添加到双端队列的后端。它接受一个元素作为参数，没有返
-回值。
+回值
 
 ```Python
 def addRear(self, item) -> None:
@@ -47,7 +47,7 @@ def isEmpty(self) -> bool:
         return self.items == []
 ```
 
-- ```size()``` 返回双端队列中元素的数目。它不需要参数，且会返回一个整数。
+- ```size()``` 返回双端队列中元素的数目。它不需要参数，且会返回一个整数
 
 ```Python
 def size(self):
@@ -76,4 +76,29 @@ class Deque():
 
     def size(self):
         return len(self.items)
+```
+
+## 实例
+
+用双端队列实现回文检测器
+
+```Python
+def palchecker(aString) -> bool:
+    """
+    palchecker: 回文检测器
+    """
+    chardeque = Deque()
+
+    for ch in aString:
+        chardeque.addRear(ch)
+    
+    stillEqual = True
+
+    while chardeque.size() > 1 and stillEqual:
+        first = chardeque.removeFront()
+        last = chardeque.removeRear()
+        if first != last:
+            stillEqual = False
+    
+    return stillEqual
 ```
