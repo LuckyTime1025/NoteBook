@@ -10,6 +10,6 @@
 - [链表](./DataStructures/LinkedList.md)
 - [栈](./DataStructures/Stack.md)
 - [队列](./DataStructures/Deque.md)
-- [双端队列]
-- [树]
+- [双端队列](./DataStructures/Queue.md)
+- [树](./DataStructures/BinaryTree.md)
 - [图]
