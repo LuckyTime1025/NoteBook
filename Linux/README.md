@@ -121,3 +121,36 @@ crontab #系统定时任务
 |-e|编辑crontab定时任务|
 |-l|查询crontab任务|
 |-r|删除当前用户所有的crontab任务|
+
+## 修改linux root密码
+
+### 修改 GRUB 引导
+
+```bash
+rw rd.break init=/sysroot/bin/sh
+
+```
+
+### 重新挂载
+
+```bash
+mount -o remount,rw /sysroot/
+```
+
+### 改变根
+
+```bash
+chroot /sysroot/
+```
+
+### 重置密码
+
+```bash
+echo 1|passwd --stdin root
+```
+
+### 忽略selinux检查本次密码修改
+
+```bash
+touch /.autorelabel
+```
