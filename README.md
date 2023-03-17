@@ -4,8 +4,9 @@
 - [SQL笔记](./SQL/README.md)  
 - [Linux笔记](./Linux/README.md)  
 - [Vim笔记](./Vim/README.md)  
-
 - [WSL配置备忘](./WSL/README.md)
+
+## 数据结构
 
 - [链表](./DataStructures/LinkedList.md)
 - [栈](./DataStructures/Stack.md)
