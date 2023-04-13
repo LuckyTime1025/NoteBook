@@ -5,6 +5,7 @@
 - [Linux笔记](./Linux/README.md)  
 - [Vim笔记](./Vim/README.md)  
 - [WSL配置备忘](./WSL/README.md)
+- [Arch Linux](./Arch/README.md)
 
 ## 数据结构
 
