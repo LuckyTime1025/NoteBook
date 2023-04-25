@@ -17,3 +17,8 @@
 - [双端队列](./DataStructures/Deque.md)
 - [树](./DataStructures/BinaryTree.md)
 - [图](./DataStructures/Graph.md)
+
+## 编程语言
+
+- [Rust](./Programming/Rust/Rust.md)
+- [JavaScript](./Programming/JavaScript/JavaScript.md)
