@@ -154,3 +154,41 @@ echo 1|passwd --stdin root
 ```bash
 touch /.autorelabel
 ```
+
+## 配置静态 IP
+
+### 进入目录 `/etc/sysconfig/network-scripts`
+
+```shell
+cd /etc/sysconfig/network-scripts
+```
+
+### 编辑 `ifcfg-ens33` 文件
+
+```conf
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=static # 设置静态IP
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33 # 网卡名称
+UUID=8c86febe-9507-4a6b-8980-7ceb488d724e
+DEVICE=ens33
+ONBOOT=yes # 开机自启
+IPADDR=xxx.xxx.xxx.xxx #新增： 配置IP地址
+NETMASK=xxx.xxx.xxx.xxx # 新增：配置子网掩码
+GATEWAY=xxx.xxx.xxx.xxx # 新增：配置网关
+DNS1=xxx.xxx.xxx.xxx # 新增：配置DNS
+```
+
+### 重启 network
+
+```shell
+service network restart
+```
