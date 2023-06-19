@@ -46,7 +46,7 @@ nameserver 223.5.5.2
 nameserver 223.6.6.6
 ```
 
-> 在 ```/etc/wsl.config``` 中添加一下代码,否则重启 wsl DNS 配置会失效
+> 在 ```/etc/wsl.config``` 中添加一下代码，否则重启 wsl DNS 配置会失效
 
 ```conf
 [network]
@@ -125,9 +125,9 @@ sudo ldconfig
 
 编辑 ```/etc/ld.so.conf.d/ld.wsl.conf``` 将 ```/usr/lib/wsl/lib``` 改为 ```/usr/lib/wsl/lib2```
 
-> 更改链接路径后,更新驱动之后需要重新链接,否则 lib2 中和 lib 中不一致,从而导致wsl中不可使用windows下的驱动
+> 更改链接路径后，更新驱动之后需要重新链接，否则 lib2 中和 lib 中不一致，从而导致 wsl 中不可使用 windows 下的驱动
 
-重启之后 wsl 会自动还原,不还原需要修改 /etc/wsl.conf
+重启之后 wsl 会自动还原，不还原需要修改 /etc/wsl.conf
 
 ```conf
 [automount]

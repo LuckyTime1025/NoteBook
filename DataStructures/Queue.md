@@ -70,9 +70,9 @@ class Queue(object):
         return len(self.__items)
 ```
 
-## 基与 Node节点实现队列
+## 基与 Node 节点实现队列
 
-### Node类
+### Node 类
 
 ```Python
 class Node(object):
