@@ -12,7 +12,7 @@ class Stack(object):
         self.__items = list()
 ```
 
-- ```push(item)``` 将一个元素添加到栈的顶端。它需要一个参数 item ，且无返回值。
+- ```push(item)``` 将一个元素添加到栈的顶端。它需要一个参数 item，且无返回值。
 
 ```Python
     def push(self, item):
@@ -84,7 +84,7 @@ class Stack(object):
         return len(self.__items)
 ```
 
-## 基与 Node节点实现栈
+## 基与 Node 节点实现栈
 
 ### Node 类
 

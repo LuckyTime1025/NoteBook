@@ -1,7 +1,5 @@
 # Arch Linux
 
-​
-
 ## 启动盘制作工具
 
 - [Ventoy](<https://www.ventoy.net/cn/download.html> "Ventoy")
@@ -171,7 +169,7 @@ nano /etc/mkinitcpio.conf
 mkinitcpio -P
 ```
 
-#### 设置root密码
+#### 设置 root 密码
 
 ```bash
 passwd
@@ -219,7 +217,7 @@ Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
 ```
 
-### archlinuxcn源
+### archlinuxcn 源
 
 编辑 /etc/pacman.conf 在文件末尾添加以下两行
 
@@ -265,7 +263,7 @@ sudo pacman -S dolphin discover konsole kate ark kcalc
 # kcolorchooser 拾色器
 ```
 
-> [KDE应用程序](<https://apps.kde.org/zh-cn/>)
+> [KDE 应用程序](<https://apps.kde.org/zh-cn/>)
 
 设置 sddm 开机自启
 
@@ -273,13 +271,13 @@ sudo pacman -S dolphin discover konsole kate ark kcalc
 systemctl enable sddm
 ```
 
-## KDE美化
+## KDE 美化
 
 主题：[WhiteSur-dark](<https://store.kde.org/p/1400424>) [WhiteSur](<https://store.kde.org/p/1398840>) [Moe](<https://store.kde.org/p/1338879>) [Apus](<https://store.kde.org/p/1737857>) [Otto](<https://store.kde.org/p/1360125>) [Lisa](<https://store.kde.org/p/1370894>)
 
 工具：[Kvantum Manager](<>) [latte-dock](<https://github.com/KDE/latte-dock>)
 
-可供参考：[GitHub - orangbus/Tool: Manjaro从入门到爱不释手](<https://github.com/orangbus/Tool>)
+可供参考：[GitHub - orangbus/Tool: Manjaro 从入门到爱不释手](<https://github.com/orangbus/Tool>)
 
 ## GRUB 美化
 
@@ -291,7 +289,7 @@ systemctl enable sddm
 sudo cp /your/path/Vimix /usr/share/grub/themes/Vimix -rf
 ```
 
-修改 /etc/default/grub 文件找到“#GRUB_THEME=”指向自定义的主题文件中的theme.txt
+修改 /etc/default/grub 文件找到“#GRUB_THEME=”指向自定义的主题文件中的 theme.txt
 
 ```bash
 GRUB_THEME="/usr/share/grub/themes/vimix/theme.txt"

@@ -1,4 +1,4 @@
-# Linux学习笔记
+# Linux 学习笔记
 
 ## 查看文件内容
 
@@ -76,7 +76,7 @@ date -d "-1 days ago" # 后一天
 
 |               |                          |
 | ------------- | ------------------------ |
-| -1, --one     | 只显示当前月份(默认)     |
+| -1, --one     | 只显示当前月份 (默认)     |
 | -3, --three   | 显示上个月、当月和下个月 |
 | -s, --sunday  | 周日作为一周第一天       |
 | -m, --monday  | 周一用为一周第一天       |
@@ -102,13 +102,13 @@ top
 
 |         |                                             |
 | ------- | ------------------------------------------- |
-| -d 秒数 | 指定top命令每隔几秒更新。默认3秒            |
-| -i      | 使top不显示任何限制或者僵尸进程             |
-| -p      | 通过指定监控进程PID来仅仅监控某个进程的状态 |
-| P       | 以CPU使用率排序。默认                       |
+| -d 秒数 | 指定 top 命令每隔几秒更新。默认 3 秒            |
+| -i      | 使 top 不显示任何限制或者僵尸进程             |
+| -p      | 通过指定监控进程 PID 来仅仅监控某个进程的状态 |
+| P       | 以 CPU 使用率排序。默认                       |
 | M       | 以内存使用率排序                            |
-| N       | 以PID排序                                   |
-| q       | 退出top                                     |
+| N       | 以 PID 排序                                   |
+| q       | 退出 top                                     |
 
 ### 定时任务
 
@@ -118,11 +118,11 @@ crontab #系统定时任务
 
 |     |                               |
 | --- | ----------------------------- |
-| -e  | 编辑crontab定时任务           |
-| -l  | 查询crontab任务               |
-| -r  | 删除当前用户所有的crontab任务 |
+| -e  | 编辑 crontab 定时任务           |
+| -l  | 查询 crontab 任务               |
+| -r  | 删除当前用户所有的 crontab 任务 |
 
-## 修改linux root密码
+## 修改 linux root 密码
 
 ### 修改 GRUB 引导
 
@@ -149,7 +149,7 @@ chroot /sysroot/
 echo 1|passwd --stdin root
 ```
 
-### 忽略selinux检查本次密码修改
+### 忽略 selinux 检查本次密码修改
 
 ```bash
 touch /.autorelabel
@@ -169,7 +169,7 @@ cd /etc/sysconfig/network-scripts
 TYPE=Ethernet
 PROXY_METHOD=none
 BROWSER_ONLY=no
-BOOTPROTO=static # 设置静态IP
+BOOTPROTO=static # 设置静态 IP
 DEFROUTE=yes
 IPV4_FAILURE_FATAL=no
 IPV6INIT=yes
@@ -181,10 +181,10 @@ NAME=ens33 # 网卡名称
 UUID=8c86febe-9507-4a6b-8980-7ceb488d724e
 DEVICE=ens33
 ONBOOT=yes # 开机自启
-IPADDR=xxx.xxx.xxx.xxx #新增： 配置IP地址
+IPADDR=xxx.xxx.xxx.xxx #新增：配置 IP 地址
 NETMASK=xxx.xxx.xxx.xxx # 新增：配置子网掩码
 GATEWAY=xxx.xxx.xxx.xxx # 新增：配置网关
-DNS1=xxx.xxx.xxx.xxx # 新增：配置DNS
+DNS1=xxx.xxx.xxx.xxx # 新增：配置 DNS
 ```
 
 ### 重启 network
