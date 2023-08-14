@@ -92,18 +92,33 @@ cd
 # 卸载 /mnt
 umount /dev/root_partition
 # 挂载 /mnt 到 rootfs 子卷
-mount -o subvol=rootfs,compress=lzo,autodefrag /dev/root_partition /mnt
+
+# 固态硬盘
+mount -o subvol=rootfs,compress=lzo,autodefrag,noatime,discard,ssd,space_cache /dev/root_partition /mnt
+# compress=lzo 压缩算法  
+# autodefrag 自动碎片整理  
+# noatime 不更新文件访问时间  
+# discard 丢弃数据  
+# ssd 只读 SSD 盘  
+# space_cache 空间缓存  
+# subvol=rootfs 挂载到 rootfs 子卷  
+
+# 机械硬盘
+mount -o subvol=rootfs,compress-force=lzo,autodefrag,noatime,space_cache /dev/root_partition /mnt
+# compress-force=lzo 强制压缩算法  
 ```
 
 #### 安装系统
 
 ```bash
-pacstrap /mnt base base-devel linux linux-firmware linux-headers 
- 
-# bash-completion 命令行 TAB 补全
+pacstrap /mnt base base-devel linux linux-firmware linux-headers networkmanager vim
+
+# base 定义基本 Arch Linux 安装的最小软件包集
+# base-devel #编译工具
+# linux Linux 内核
+# linux-firmware Linux 内核固件
 # networkmanager 网络管理器
-# nano vim 文本编辑器
-# sudo 超级用户命令
+# vim 文本编辑器
 ```
 
 #### 生成 fstab 文件
@@ -215,6 +230,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 # 阿里云
 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
+# 清华大学
+Serber = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 ```
 
 ### archlinuxcn 源
@@ -235,7 +252,7 @@ pacman -S archlinuxcn-keyring
 ## Arch Linux Fonts
 
 ```bash
-pacman -S wqy-microhei wqy-zenhei wqy-bitmapfont
+pacman -S wqy-microhei wqy-zenhei wqy-bitmapfont ttf-jetbrains-mono
 ```
 
 ## Arch Linux KDE
@@ -244,6 +261,7 @@ pacman -S wqy-microhei wqy-zenhei wqy-bitmapfont
 
 ```bash
 pacman -S xorg-server plasma sddm 
+# plasma-desktop 最小安装
 ```
 
 ## 安装常用软件
@@ -252,7 +270,7 @@ pacman -S xorg-server plasma sddm
 sudo pacman -S dolphin discover konsole kate ark kcalc
  
 # dolphin 文件管理器
-# discover 软件管理中心 #需要 packagekit-qt5
+# discover 软件管理中心 #需要安装后端程序 packagekit-qt5
 # konsole KDE终端
 # kate 文本编辑器
 # ark 压缩包管理工具
@@ -261,6 +279,9 @@ sudo pacman -S dolphin discover konsole kate ark kcalc
 # okular 文档查看
 # sweeper 系统清理
 # kcolorchooser 拾色器
+# obs-studio OBS Studio
+# flameshot 火焰截图
+# firefox 火狐浏览器
 ```
 
 > [KDE 应用程序](<https://apps.kde.org/zh-cn/>)
@@ -316,6 +337,20 @@ QT_IM_MODULE  DEFAULT=fcitx
 XMODIFIERS    DEFAULT=\@im=fcitx
 INPUT_METHOD  DEFAULT=fcitx
 SDL_IM_MODULE DEFAULT=fcitx
+```
+
+## 输入法安装——IBus
+
+```bash
+# ibus-rime 依赖 IBus. 会自动安装
+sudo pacman -S ibus-rime
+
+# 编辑 ~/.xprofile 写入以下内容
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+ibus-daemon -x -d
 ```
 
 ## NVIDIA 安装
