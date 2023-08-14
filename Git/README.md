@@ -79,6 +79,16 @@ git reset --hard <commitld>
 git reflog
 ```
 
+## 修改 Commit 信息
+
+```shell
+# 修改最后一次
+git commit --amend
+# 修改倒数第 n 次
+git rebase  -i HEAD~n
+# 修改哪条注释就把前面的 pick 换成 edit
+```
+
 > 设置某些文件无需纳入 ```Git``` 管理，例如自动生成的日志文件，或者编译过程中创建的临时文件，可以创建 ```.gitignore``` ,列出需要忽略的文件
 
 ---
