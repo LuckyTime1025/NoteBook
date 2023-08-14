@@ -5,6 +5,8 @@
 ```shell
 git config --global user.name "Lucky"
 git config --global user.email "luckytime1025@gmail.com"
+# 设置默认编辑器
+git config --global core.editor vim
 ```
 
 ## 代理配置

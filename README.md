@@ -1,7 +1,5 @@
 # 目录
 
-- [数学](./Math/README.md)
-
 - [Git 笔记](./Git/README.md)  
 - [SQL 笔记](./SQL/README.md)  
 - [Linux 笔记](./Linux/README.md)  
