@@ -2,11 +2,35 @@
 
 ## 设置用户信息
 
-```shell
+```bash
 git config --global user.name "Lucky"
 git config --global user.email "luckytime1025@gmail.com"
 # 设置默认编辑器
 git config --global core.editor vim
+```
+
+## 设置 git 存储凭证
+
+### 以文本的形式明文存储
+
+>设置后，git 不会将密码存储在磁盘上，而是将密码存储在文件中，并在下次运行 git 时重新输入密码。
+
+```bash
+# 将密码存储在 .git-credentials 文件中
+git config credential.helper store
+# 全局使用，而不是仅仅在项目目录中存储
+git config --global credential.helper store
+```
+
+> 取消将密码存储在文件中的设置：`git config --unset credential.helper`
+
+### 以缓存的形式存储
+
+```bash
+#默认缓存15分钟
+git config --global credential.helper cache
+#可以更改默认的密码缓存时限
+git config --global credential.helper 'cache --timeout=3600'
 ```
 
 ## 代理配置
@@ -29,31 +53,31 @@ git config --global --unset https.proxy
 
 ## 初始化仓库
 
-```shell
+```bash
 git init
 ```
 
 ## 添加文件到暂存区
 
-```shell
+```bash
 git add
 ```
 
 ## 提交到仓库
 
-```shell
+```bash
 git commit -m "commit message"
 ```
 
 ## 查看文件状态
 
-```shell
+```bash
 git status
 ```
 
 ## 查看提交日志
 
-```shell
+```bash
 git log [option]
 ```
 
@@ -63,25 +87,25 @@ git log [option]
   - ```--abbrev-commit``` 缩略显示 ```commitld```
   - ```--graph``` 图形化显示
 
-```shell
+```bash
 git log --pretty=oneline --abbrev-commit --graph
 ```
 
 ## 版本回退
 
-```shell
+```bash
 git reset --hard <commitld>
 ```
 
 ## 查看已经删除的记录
 
-```shell
+```bash
 git reflog
 ```
 
 ## 修改 Commit 信息
 
-```shell
+```bash
 # 修改最后一次
 git commit --amend
 # 修改倒数第 n 次
@@ -97,37 +121,37 @@ git rebase  -i HEAD~n
 
 ### 查看分支
 
-```shell
+```bash
 git branch
 ```
 
 ### 查看远程仓库关联状态
 
-```shell
+```bash
 git branch -vv
 ```
 
 ### 创建新分支
 
-```shell
+```bash
 git branch <branch name>
 ```
 
 ### 切换分支
 
-```shell
+```bash
 git checkout <branch name>
 ```
 
 ### 创建并切换分支
 
-```shell
+```bash
 git checkout -b <branch name>
 ```
 
 ### 合并分支
 
-```shell
+```bash
 git merge <branch name>
 ```
 
@@ -135,7 +159,7 @@ git merge <branch name>
 
 ### 删除分支
 
-```shell
+```bash
 git branch -d <branch name>
 git branch -D <branch name>
 ```
@@ -159,7 +183,7 @@ git branch -D <branch name>
 
 ### 生成```rsa```密匙
 
-```shell
+```bash
 ssh-keygen -t rsa -b 4096 -C "luckytime1025@gmail.com"
 ```
 
@@ -167,13 +191,13 @@ ssh-keygen -t rsa -b 4096 -C "luckytime1025@gmail.com"
 
 ### 测试是否配置成功
 
-```shell
+```bash
 ssh -T git@gitee.com
 ```
 
 ### 添加远程仓库
 
-```shell
+```bash
 git remote add <remote name> <remote url>
 ```
 
@@ -181,25 +205,25 @@ git remote add <remote name> <remote url>
 
 ### 查看远程仓库
 
-```shell
+```bash
 git remote
 ```
 
 ### 删除远程仓库
 
-```shell
+```bash
 git remote rm <remote name>
 ```
 
 ### 修改远程仓库地址
 
-```shell
+```bash
 git remote set-url <remote name> <remote url>
 ```
 
 ### 推送到远程仓库
 
-```shell
+```bash
 git push [-f] [--set-upstream] [remote name [branch name]:[remote branch name]] 
 ```
 
@@ -210,13 +234,13 @@ git push [-f] [--set-upstream] [remote name [branch name]:[remote branch name]]
 
 ### 从远程仓库克隆
 
-```shell
+```bash
 git clone <remote url>
 ```
 
 ### 从远程仓库抓取
 
-```shell
+```bash
 git fetch [remote name] [branch name]
 ```
 
@@ -224,7 +248,7 @@ git fetch [remote name] [branch name]
 
 ### 从远程仓库拉取
 
-```shell
+```bash
 git pull [remote name] [branch name]
 ```
 
