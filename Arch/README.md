@@ -296,7 +296,7 @@ systemctl enable sddm
 
 主题：[WhiteSur-dark](<https://store.kde.org/p/1400424>) [WhiteSur](<https://store.kde.org/p/1398840>) [Moe](<https://store.kde.org/p/1338879>) [Apus](<https://store.kde.org/p/1737857>) [Otto](<https://store.kde.org/p/1360125>) [Lisa](<https://store.kde.org/p/1370894>)
 
-工具：[Kvantum Manager](<>) [latte-dock](<https://github.com/KDE/latte-dock>)
+工具：[Kvantum Manager](<https://github.com/tsujan/Kvantum>) [latte-dock](<https://github.com/KDE/latte-dock>)
 
 可供参考：[GitHub - orangbus/Tool: Manjaro 从入门到爱不释手](<https://github.com/orangbus/Tool>)
 
@@ -383,4 +383,38 @@ Include = /etc/pacman.d/mirrorlist
  
  
 pacman -S steam
+```
+
+## 安装 LibreOffice
+
+```bash
+pacman -S libreoffice-still-zh-cn
+```
+
+## ZSH 配置
+
+```bash
+# 开启代理
+proxy_on(){
+    export http_proxy=http://127.0.0.1:7890
+    export https_proxy=$http_proxy
+    echo -e "终端代理已开启：\n    HTTP_PROXY： ${http_proxy}\n    HTTPS_PROXY：${https_proxy}"
+}
+
+# 关闭代理
+proxy_off(){
+    unset http_proxy https_proxy
+    echo -e "终端代理已关闭"
+}
+
+# 插件
+
+plugins=(
+    git
+    safe-paste
+    sudo
+
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
 ```
