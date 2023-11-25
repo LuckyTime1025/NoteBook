@@ -1,7 +1,7 @@
 # 目录
 
 - [Git 笔记](./Git/README.md)  
-- [SQL 笔记](./SQL/README.md)  
+- [SQL 笔记](./SQL/MySQL基础.md)  
 - [Linux 笔记](./Linux/README.md)  
 - [Vim 笔记](./Vim/README.md)  
 - [WSL 配置备忘](./WSL/README.md)
