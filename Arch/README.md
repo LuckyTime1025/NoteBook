@@ -231,7 +231,7 @@ Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 # 阿里云
 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
 # 清华大学
-Serber = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 ```
 
 ### archlinuxcn 源
