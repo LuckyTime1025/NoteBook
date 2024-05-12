@@ -5,6 +5,90 @@
 - [Ventoy](<https://www.ventoy.net/cn/download.html> "Ventoy")
 - [Etcher](<https://www.balena.io/etcher> "Etcher")
 
+## 在服务器中安装 ArchLinux
+
+### 修改 GRUB 配置
+
+> #编辑 /boot/grub/grub.cfg 文件，将下面内容放到第一个 menuentry 前面，让 grub 自动引导 Arch Live。
+
+```conf
+menuentry 'ArchISO' --class iso {
+  set isofile=/arch.iso
+  loopback loop0 $isofile
+  #archisolabel 设置 ArchISO 文件所在的文件系统标签。
+  #img_dev 指出 ArchISO 文件所在的设备
+  #img_loop 是 ArchISO 文件在 img_dev 里的绝对位置
+  # 下面这两个文件名字需要自己到镜像文件当中查看，Arch Linux 不同版本的名字可能不太一样。
+  linux (loop0)/arch/boot/x86_64/vmlinuz-linux archisolabel=ARCH img_dev=/dev/vda1 img_loop=$isofile
+  initrd (loop0)/arch/boot/x86_64/initramfs-linux.img
+}
+```
+
+> 备份当前网络配置，`/etc/hosts`、`/etc/resolv.conf`等配置
+
+### 安装完成后配置网络
+
+编辑 `/etc/systemd/network/*.network`
+
+```conf
+[Match]
+MACAddress=fa:16:3e:19:79:f9
+Name=ens3
+
+[Network]
+Address=192.168.8.136/20
+Gateway=192.168.0.1
+DNS=1.1.1.1
+# 如果使用DHCP
+DHCP=yes
+```
+
+#### 启动 systemd-networkd 服务
+
+> - `systemd-resolved`是可选的，它是一个为本地应用程序提供网络名称（DNS）解析服务。是否使用它可以考虑下面几条：
+> - 如果 .network 文件中指定了 `DNS` 条目，则 `systemd-resolved` 服务是必需的
+
+```bash
+systemctl start systemd-networkd && systemctl start systemd-resolved
+```
+
+#### 安装并配置 OpenSSh
+
+修改 `/etc/ssh/sshd_config`
+
+```conf
+Port 22 # 指定 SSH 服务监听的端口号。默认值是 22
+ListenAddress 0.0.0.0 # 指定 SSH 服务监听的网络接口。
+PermitRootLogin no # 控制是否允许直接以 root 用户身份登录。
+PasswordAuthentication yes # 决定是否允许密码认证。
+PubkeyAuthentication yes # 启用或禁用公钥认证。
+PrintMotd yes # 可以在/etc/motd 中写入欢迎界面的字符
+
+# https://motd.bakaya.ro/ 图片转字符画
+                   _ooOoo_
+                  o8888888o
+                  88" . "88
+                  (| -_- |)
+                  O\  =  /O
+               ____/`---'\____
+             .'  \\|     |//  `.
+            /  \\|||  :  |||//  \
+           /  _||||| -:- |||||-  \
+           |   | \\\  -  /// |   |
+           | \_|  ''\---/''  |   |
+           \  .-\__  `-`  ___/-. /
+         ___`. .'  /--.--\  `. . __
+      ."" '<  `.___\_<|>_/___.'  >'"".
+     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+     \  \ `-.   \_ __\ /__ _/   .-` /  /
+======`-.____`-.___\_____/___.-`____.-'======
+                   `=---='
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           佛祖保佑       永不死机
+```
+
 ## Arch Linux 安装
 
 ### 验证引导模式
@@ -49,13 +133,13 @@ timedatectl status
 
 #### 建立硬盘分区
 
-|       |       |       |       |       |
-| :---: | :---: | :---: | :---: | :---: |
+|       |       |       |       |
+| :---: | :---: | :---: | :---: |
 |   /   | 100G  | /srv  |  15G  |
 | /boot | 512M  | /home | 200G  |
 | SWAP  |  8G   | /usr  | 200G  |
 | /opt  | 100G  | /var  | 76.9G |
-| /tmp  |  15G  |
+| /tmp  |  15G  |||
 
 #### 格式化硬盘分区
 
